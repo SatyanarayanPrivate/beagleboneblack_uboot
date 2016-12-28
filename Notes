@@ -1,0 +1,17 @@
+==> Uboot
+    >> http://www.twam.info/hardware/beaglebone-black/u-boot-on-beaglebone-black
+    - $ git clone git://git.denx.de/u-boot.git && cd u-boot
+    - $ make am335x_boneblack_defconfig
+    - $ ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- make
+    - Configuring U-Boot as uEnv.txt
+        To configure U-Boot we create a file uEnv.txt on the boot partition and fill it, e.g. with
+        -----
+        console=ttyO0,115200n8
+        ipaddr=192.168.23.2
+        serverip=192.168.23.1
+        rootpath=/exports/rootfs
+        netargs=setenv bootargs console=${console} ${optargs} root=/dev/nfs nfsroot=${serverip}:${rootpath},${nfsopts} rw ip=${ipaddr}:${serverip}:192.168.23.1:255.255.255.0:beaglebone:eth0:none:192.168.23.1
+        netboot=echo Booting from network ...; tftp ${loadaddr} ${bootfile}; tftp ${fdtaddr} ${fdtfile}; run netargs; bootz ${loadaddr} - ${fdtaddr}
+        uenvcmd=run netboot
+        -----
+    - Copy u-boot, uEnv.txt & MLO to sd card

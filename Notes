@@ -1,5 +1,6 @@
 ==> Uboot
-    >> http://www.twam.info/hardware/beaglebone-black/u-boot-on-beaglebone-black
+
+>> http://www.twam.info/hardware/beaglebone-black/u-boot-on-beaglebone-black
     - $ git clone git://git.denx.de/u-boot.git && cd u-boot
     - $ make am335x_boneblack_defconfig
     - $ ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- make
@@ -15,3 +16,5 @@
         uenvcmd=run netboot
         -----
     - Copy u-boot, uEnv.txt & MLO to sd card
+
+cscope -Rk;make cscope;cscope -d cscope.out
